@@ -39,7 +39,7 @@ The files contained in this repository are as follows:
 
 **Step 5**: Execute the script ``prediction_pc.py``.
 
-python prediction_pc.py
+    python prediction_pc.py
             
 The script runs in the current directory.
 
