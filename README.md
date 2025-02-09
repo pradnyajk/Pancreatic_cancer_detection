@@ -43,4 +43,4 @@ The files contained in this repository are as follows:
             
 The script runs in the current directory.
 
-**Step 6**: Prediction results will be saved in `predictions.csv` which includes predicted pacreas CT images.
+**Step 6**: Prediction results will be saved in `predictions.csv` which includes predicted output of pacreas CT images.
