@@ -38,9 +38,8 @@ The files contained in this repository are as follows:
 **Step 4**: Save the images to be predicted in "Images" folder
 
 **Step 5**: Execute the script ``prediction_pc.py``.
-            ```
-            python prediction_pc.py 
-            ```
+
+            ```python prediction_pc.py```
 The script runs in the current directory.
 
 **Step 6**: Prediction results will be saved in `predictions.csv` which includes predicted pacreas CT images.
