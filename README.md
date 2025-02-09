@@ -28,6 +28,7 @@ The files contained in this repository are as follows:
 **Output**: Prediction file
 
 **Execution:**
+
 **Step 1**: Download this repository, extract zipped file and ensure that all the files are present in the same folder when running the script.
 
 **Step 2**: Install Anaconda3-5.2 or above.
