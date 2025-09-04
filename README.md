@@ -15,9 +15,10 @@ Considering the importance and prevalence of pancreatic cancer worldwide, we tra
 ## Repository files:
 The files contained in this repository are as follows:
 * ``Readme file``: General information
-* Folder named ``Model`` contains the trained model
+* ``Model``: Folder contains the trained model
+* ``Training_scripts``: Folder contains the code for training baseline and ResNet50 models
 * ``prediction_pc.py``: Main script to run prediction
-* Folder named ``Images``: Folder where images to be classified are to be saved (sample images are given for the reference).
+* ``Images``: Folder where images to be classified are to be saved (sample images are given for the reference).
 
 ## Usage:
 
