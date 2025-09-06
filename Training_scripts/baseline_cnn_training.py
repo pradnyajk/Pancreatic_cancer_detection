@@ -36,7 +36,7 @@ if gpus:
 # Path where results will be stored
 path = "path_to_result"
 
-# Step 2: Function to load images from folder and their corresponding labels
+# Function to load images from folder and their corresponding labels
 def load_images_from_folder(folder):
     images = []
     labels = []
@@ -87,7 +87,7 @@ x_train = x_train / 255.0
 x_val = x_val / 255.0
 test_images = test_images / 255.0
 
-# Step 10: Encode string labels into integers using LabelEncoder
+# Encode string labels into integers using LabelEncoder
 label_encoder = LabelEncoder()
 y_train = label_encoder.fit_transform(y_train)
 y_val = label_encoder.transform(y_val)
@@ -98,7 +98,7 @@ y_train = tf.keras.utils.to_categorical(y_train, num_classes=3)
 y_val = tf.keras.utils.to_categorical(y_val, num_classes=3)
 test_labels_one_hot = tf.keras.utils.to_categorical(test_labels, num_classes=3)
 
-# Step 11: Model creation function (for KerasClassifier to use in GridSearchCV)
+# Model creation function (for KerasClassifier to use in GridSearchCV)
 def create_model(learning_rate=0.001, optimizer='SGD'):
     model = tf.keras.models.Sequential([
         tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(240, 240, 3)),
@@ -117,10 +117,10 @@ def create_model(learning_rate=0.001, optimizer='SGD'):
                   loss='categorical_crossentropy', metrics=['accuracy'])
     return model
 
-# Step 12: Use KerasClassifier to wrap the Keras model for GridSearchCV
+# Use KerasClassifier to wrap the Keras model for GridSearchCV
 model = KerasClassifier(build_fn=create_model, verbose=0)
 
-# Step 13: Grid Search for hyperparameter tuning
+# Grid Search for hyperparameter tuning
 param_grid = {
     'batch_size': [64, 100, 128, 132],
     'epochs': [10, 100, 300, 500],
@@ -135,24 +135,24 @@ grid_result = grid.fit(x_train, y_train)
 # Print best hyperparameters
 print("Best Hyperparameters: ", grid_result.best_params_)
 
-# Step 14: Evaluate model on validation set
+# Evaluate model on validation set
 best_model = grid_result.best_estimator_.model
 val_loss, val_accuracy = best_model.evaluate(x_val, y_val)
 print('Validation loss: {}, Validation accuracy: {}'.format(val_loss, val_accuracy * 100))
 
-# Step 15: Test the model using the test set and evaluate its performance
+# Test the model using the test set and evaluate its performance
 test_loss, test_accuracy = best_model.evaluate(test_images, test_labels_one_hot)
 print('Test loss: {}, Test accuracy: {}'.format(test_loss, test_accuracy * 100))
 
-# Step 16: Predict labels for the test set
+# Predict labels for the test set
 test_predictions = best_model.predict(test_images)
 test_pred_labels = np.argmax(test_predictions, axis=1)
 
-# Step 17: Classification report
+# Classification report
 class_report = classification_report(test_labels, test_pred_labels, target_names=label_encoder.classes_)
 print("Classification Report:\n", class_report)
 
-# Step 18: ROC Curve and AUC for each class
+# ROC Curve and AUC for each class
 test_labels_bin = label_binarize(test_labels, classes=np.arange(5))  # Assuming 5 classes
 fpr = dict()
 tpr = dict()
@@ -176,19 +176,19 @@ plt.legend(loc="lower right")
 plt.savefig(graph + '/roc-curve-multiclass.png')
 plt.show()
 
-# Step 19: Save Classification Report to file
+# Save Classification Report to file
 class_report_file = os.path.join(result, 'classification_report.txt')
 with open(class_report_file, 'w') as f:
     f.write("Classification Report:\n")
     f.write(class_report)
 
-# Step 20: Save training history to a CSV file
+# Save training history to a CSV file
 hist_df = pd.DataFrame(grid_result.best_estimator_.model.history.history)
 hist_csv_file = os.path.join(result, 'history.csv')
 with open(hist_csv_file, mode='w') as f:
     hist_df.to_csv(f)
 
-# Step 21: Confusion matrix
+# Confusion matrix
 predicted_classes = np.argmax(test_predictions, axis=1)
 cm = confusion_matrix(test_labels, predicted_classes)
 
@@ -200,31 +200,3 @@ plt.ylabel("Actual")
 plt.title("Confusion Matrix")
 plt.savefig(graph + '/confusion-matrix.png')
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
