@@ -159,11 +159,11 @@ print('Recall:', recall)
 print('F1 Score:', f1)
 
 # Compute ROC curve and ROC AUC for each class
-test_labels_bin = label_binarize(test_labels, classes=np.arange(5))
+test_labels_bin = label_binarize(test_labels, classes=np.arange(3))
 fpr = dict()
 tpr = dict()
 roc_auc = dict()
-for i in range(5):  # Assuming you have 5 classes
+for i in range(3):  # Assuming you have 3 classes
     fpr[i], tpr[i], _ = roc_curve(test_labels_bin[:, i], test_predictions[:, i])
     roc_auc[i] = auc(fpr[i], tpr[i])
 
@@ -234,4 +234,5 @@ plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.title("Confusion Matrix")
 plt.savefig(graph + '/confusion-matrix.png')
+
 plt.show()
