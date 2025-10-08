@@ -153,7 +153,7 @@ class_report = classification_report(test_labels, test_pred_labels, target_names
 print("Classification Report:\n", class_report)
 
 # ROC Curve and AUC for each class
-test_labels_bin = label_binarize(test_labels, classes=np.arange(5))  # Assuming 5 classes
+test_labels_bin = label_binarize(test_labels, classes=np.arange(3))  # Assuming 3 classes
 fpr = dict()
 tpr = dict()
 roc_auc = dict()
@@ -200,3 +200,4 @@ plt.ylabel("Actual")
 plt.title("Confusion Matrix")
 plt.savefig(graph + '/confusion-matrix.png')
 plt.show()
+
