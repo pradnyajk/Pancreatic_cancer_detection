@@ -164,7 +164,7 @@ for i in range(5):
 # Plot ROC curves for each class
 plt.figure(figsize=(10, 8))
 colors = ['blue', 'green', 'red', 'purple', 'orange']
-for i, color in zip(range(5), colors):
+for i, color in zip(range(3), colors):
     plt.plot(fpr[i], tpr[i], color=color, lw=2, label='ROC curve of class {0} (AUC = {1:0.2f})'.format(i, roc_auc[i]))
 plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
 plt.xlim([0.0, 1.0])
@@ -200,4 +200,5 @@ plt.ylabel("Actual")
 plt.title("Confusion Matrix")
 plt.savefig(graph + '/confusion-matrix.png')
 plt.show()
+
 
